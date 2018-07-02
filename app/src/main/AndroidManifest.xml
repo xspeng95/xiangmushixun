@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.activity.AskActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterView" />
-        <activity android:name=".AskActivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".FindPwdActivity" />
         <activity android:name=".LoginActivity"></activity>
     </application>

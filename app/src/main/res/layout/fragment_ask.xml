@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#efefef"
+    android:id="@+id/mFragment"
+    tools:context=".fragment.AskFragment">
+
+    <ScrollView
+
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/featured_bu"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="0dp"
+                android:background="@drawable/featured_80"
+                />
+            <Button
+                android:id="@+id/life_bu"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_below="@+id/featured_bu"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/food_80"
+                />
+            <Button
+                android:id="@+id/sport_bu"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="250dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="0dp"
+                android:background="@drawable/sport_80"
+                />
+            <Button
+                android:id="@+id/star_bu"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_below="@+id/sport_bu"
+                android:layout_marginLeft="250dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/star_80"
+                />
+
+            <Button
+                android:id="@+id/emotion_bu"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="150dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="0dp"
+                android:background="@drawable/love_80"
+                />
+            <Button
+                android:id="@+id/financial_bu"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_below="@+id/emotion_bu"
+                android:layout_marginLeft="150dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/financial_80"
+                />
+        </RelativeLayout>
+    </ScrollView>
+
+</FrameLayout>

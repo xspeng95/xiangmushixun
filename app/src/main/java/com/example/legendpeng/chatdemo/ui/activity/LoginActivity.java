@@ -1,4 +1,4 @@
-package com.example.legendpeng.chatdemo;
+package com.example.legendpeng.chatdemo.ui.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
 import android.widget.EditText;
-
+import com.example.legendpeng.chatdemo.R;
 public class LoginActivity extends AppCompatActivity {
     private Button rigester_bu;
     private EditText count_text;
@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(LoginActivity.this, RegisterView.class);
+                intent.setClass(LoginActivity.this,RegisterView.class);
                 startActivity(intent);
             }
         });
