@@ -1,5 +1,6 @@
-package com.example.legendpeng.chatdemo;
-import android.content.Intent;
+package com.example.legendpeng.chatdemo.ui.activity;
+
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
@@ -7,10 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
+import com.example.legendpeng.chatdemo.R;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
