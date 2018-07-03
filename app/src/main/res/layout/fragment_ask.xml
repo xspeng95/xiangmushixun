@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#efefef"
     android:id="@+id/mFragment"
-    tools:context=".fragment.AskFragment">
+    tools:context="ui.fragment.AskFragment">
 
     <ScrollView
 

@@ -27,7 +27,7 @@ private EditText mima_text;
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(MainActivity.this, RegisterView.class);
+                intent.setClass(MainActivity.this, AskActivity.class);
                 startActivity(intent);
             }
         });

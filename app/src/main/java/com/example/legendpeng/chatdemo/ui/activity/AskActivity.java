@@ -1,130 +1,112 @@
 package com.example.legendpeng.chatdemo.ui.activity;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.widget.RadioGroup;
 
-import com.example.legendpeng.chatdemo.R;
-
-
-import com.example.legendpeng.chatdemo.ui.fragment.*;
-import java.util.ArrayList;
-import java.util.List;
 import android.support.v4.app.Fragment;
-import android.support.annotation.IdRes;
-
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import com.example.legendpeng.chatdemo.R;
+import android.view.MenuItem;
+import android.support.v7.widget.Toolbar;
 
-import android.widget.RadioButton;
+import android.widget.TextView;
 
-public class AskActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener{
-    private RadioGroup mRadioGroup;
-    private List<Fragment> fragments = new ArrayList<>();
-    private Fragment fragment;
-    private FragmentManager fm;
-    private FragmentTransaction transaction;
-    public RadioButton rb_Ask,rb_Listen,rb_Shop,rb_My;
+import com.ashokvarma.bottomnavigation.BottomNavigationBar;
+import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.example.legendpeng.chatdemo.ui.fragment.AskFragment;
+import com.example.legendpeng.chatdemo.ui.fragment.ListenFragment;
+import com.example.legendpeng.chatdemo.ui.fragment.MineFragment;
+import com.example.legendpeng.chatdemo.ui.fragment.ShopFragment;
 
+public class AskActivity extends AppCompatActivity
+{
+    private BottomNavigationBar mBottomNavigationBar;
+    //private Toolbar mToorBar;
+    //private TextView mTextView;
+   // private boolean mDrawerLayoutState=false;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ask);
-        initView(); //初始化组件
-        mRadioGroup.setOnCheckedChangeListener(this); //点击事件
-        fragments = getFragments(); //添加布局
-        //添加默认布局
-        normalFragment();
-    }
+        findViews();
+        BottomNavigationBarInit();
+        ToolBarInit();
 
-    //默认布局
-    private void normalFragment() {
-        fm=getSupportFragmentManager();
-        transaction=fm.beginTransaction();
-        fragment=fragments.get(0);
-        transaction.replace(R.id.mFragment,fragment);
-        transaction.commit();
+        replaceFragment(0);
     }
-    private void initView() {
-        mRadioGroup = (RadioGroup) findViewById(R.id.home_tab);
-        rb_Ask= (RadioButton) findViewById(R.id.tab_ask);
-        rb_Listen= (RadioButton) findViewById(R.id.tab_liston);
-        rb_Shop= (RadioButton) findViewById(R.id.tab_bulleted);
-        rb_My= (RadioButton) findViewById(R.id.tab_mine);
+    private void findViews(){
+        mBottomNavigationBar=(BottomNavigationBar)findViewById(R.id.bottomnavigationbar);
+       // mToorBar=(Toolbar)findViewById(R.id.drawerlayout);
+       // mTextView=(TextView)findViewById(R.id.title);
+    }
+    private void ToolBarInit(){
+        //setSupportActionBar(mToorBar);
+        //getSupportActionBar().setHomeButtonEnabled( true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setTitle("");
+       // mTextView.setText("提问");
     }
     @Override
-    public void onCheckedChanged(RadioGroup radioGroup, @IdRes int checkedId) {
-        fm=getSupportFragmentManager();
-        transaction=fm.beginTransaction();
-        switch (checkedId){
-            case R.id.tab_ask:
-                fragment=fragments.get(0);
-                transaction.replace(R.id.mFragment,fragment);
-                break;
-            case R.id.tab_liston:
-                fragment=fragments.get(1);
-                transaction.replace(R.id.mFragment,fragment);
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return true;
 
+    }
+    private void replaceFragment(int position) {
+        Fragment fragment = null;
+        switch (position) {
+            case 0:
+                fragment = new AskFragment();
                 break;
-            case R.id.tab_bulleted:
-                fragment=fragments.get(2);
-                transaction.replace(R.id.mFragment,fragment);
-
+            case 1:
+                fragment = new ListenFragment();
                 break;
-            case R.id.tab_mine:
-                fragment=fragments.get(3);
-                transaction.replace(R.id.mFragment,fragment);
-
+            case 2:
+                fragment = new ShopFragment();
                 break;
+            case 3:
+                fragment = new MineFragment();
+                break;
+            default:
         }
-        setTabState();
+        FragmentManager fragmentManager=getSupportFragmentManager();
+        FragmentTransaction transaction=fragmentManager.beginTransaction();
+        transaction.replace(R.id.mainFrameLayout,fragment);
         transaction.commit();
     }
+    private void BottomNavigationBarInit(){
+        mBottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED);
+        mBottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
+        mBottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.ask_question_w,"提问"))
+                .addItem(new BottomNavigationItem(R.drawable.listening_w,"偷听"))
+                .addItem(new BottomNavigationItem(R.drawable.bulleted_list_w,"收购"))
+                .addItem(new BottomNavigationItem(R.drawable.me_w,"我的"))
+                .initialise();
 
 
-    //设置选中和未选择的状态
-    private void setTabState() {
-        setHomeState();
-        setMessageState();
-        setFindState();
-        setMyState();
-    }
-    private void setHomeState() {
-        if (rb_Ask.isChecked()){
-            rb_Ask.setTextColor(ContextCompat.getColor(this,R.color.colorAccent));
-        }else{
-            rb_Ask.setTextColor(ContextCompat.getColor(this,R.color.colorPrimary));
-        }
-    }
-    private void setMessageState() {
-        if (rb_Listen.isChecked()){
-            rb_Listen.setTextColor(ContextCompat.getColor(this,R.color.colorAccent));
-        }else{
-            rb_Listen.setTextColor(ContextCompat.getColor(this,R.color.colorPrimary));
-        }
-    }
-    private void setFindState() {
-        if (rb_Shop.isChecked()){
-            rb_Shop.setTextColor(ContextCompat.getColor(this,R.color.colorAccent));
-        }else{
-            rb_Shop.setTextColor(ContextCompat.getColor(this,R.color.colorPrimary));
-        }
-    }
 
-    private void setMyState() {
-        if (rb_My.isChecked()){
-            rb_My.setTextColor(ContextCompat.getColor(this,R.color.colorAccent));
-        }else{
-            rb_My.setTextColor(ContextCompat.getColor(this,R.color.colorPrimary));
-        }
 
-    }
-    public List<Fragment> getFragments(){
-        fragments.add(new AskFragment());
-        fragments.add(new ListenFragment());
-        fragments.add(new ShopFragment());
-        fragments.add(new MineFragment());
-        return fragments;
+        mBottomNavigationBar.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener() {
+            @Override
+           public void onTabSelected(int position) {
+                //setSupportActionBar(mToorBar);
+                //               if(position==0||position==1){
+//                   mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+//                    getSupportActionBar().setHomeButtonEnabled(true);
+//                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//                }
+//                if(position==2||position==3){
+//                    mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+//                    getSupportActionBar().setHomeButtonEnabled(false);
+//                    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+//                }
+
+                replaceFragment(position);
+            }
+            @Override
+            public void onTabUnselected(int position) {}
+            @Override
+            public void onTabReselected(int position) {}
+        });
     }
 }

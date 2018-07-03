@@ -84,27 +84,28 @@
     </RelativeLayout>
 </ScrollView> -->
 
-      <RelativeLayout
+    <!-- <RelativeLayout
 
+         android:layout_width="match_parent"
+         android:layout_height="match_parent">
+
+         <!-Fragment容器-->
+    <!--  <FrameLayout
+          android:id="@+id/home_container"
           android:layout_width="match_parent"
-          android:layout_height="match_parent">
+          android:layout_height="match_parent"
+          android:layout_weight="1"/>
+      <!-底部tab栏-->
+    <!--   <RadioGroup
+           android:id="@+id/home_tab"
+           android:layout_width="match_parent"
+           android:layout_height="70dp"
+           android:layout_alignParentBottom="true"
+           android:background="#ffffff"
+           android:orientation="horizontal">
+           <!-为每个tab的图片和文字设置选择器->
 
-          <!--Fragment容器-->
-        <FrameLayout
-            android:id="@+id/home_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-        <!--底部tab栏-->
-        <RadioGroup
-            android:id="@+id/home_tab"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_alignParentBottom="true"
-            android:background="#ffffff"
-            android:orientation="horizontal">
-            <!--为每个tab的图片和文字设置选择器-->
-            <RadioButton
+             <RadioButton
                 android:id="@+id/tab_ask"
                 style="@style/HomeTabButton"
 
@@ -112,7 +113,7 @@
                 android:drawableTop="@drawable/ask_question_w"
                 android:text="提问" />
 
-            <RadioButton
+      <RadioButton
                 android:id="@+id/tab_liston"
                 style="@style/HomeTabButton"
                 android:button="@null"
@@ -120,22 +121,55 @@
                 android:drawableTop="@drawable/listening_w"
                 android:text="偷听" />
 
-            <RadioButton
+      <RadioButton
                 android:id="@+id/tab_bulleted"
                 style="@style/HomeTabButton"
                 android:button="@null"
                 android:checked="false"
                 android:drawableTop="@drawable/bulleted_list_w"
                 android:text="收购" />
-            <RadioButton
+       <RadioButton
                 android:id="@+id/tab_mine"
                 style="@style/HomeTabButton"
                 android:button="@null"
                 android:checked="false"
                 android:drawableTop="@drawable/me_w"
                 android:text="我的" />
-        </RadioGroup>
+     </RadioGroup>
     </RelativeLayout>
+             -->
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawerlayout"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+
+        <FrameLayout
+            android:id="@+id/mainFrameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_gravity="start"
+            android:background="#FFF"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2"/>
+        </LinearLayout>
+
+    </android.support.v4.widget.DrawerLayout>
+
+
+    <com.ashokvarma.bottomnavigation.BottomNavigationBar
+        android:id="@+id/bottomnavigationbar"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 
 </LinearLayout>
