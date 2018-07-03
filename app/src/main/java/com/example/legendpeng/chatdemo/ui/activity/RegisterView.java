@@ -10,14 +10,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.example.legendpeng.chatdemo.R;
-
-
+import android.content.Intent;
+import android.widget.Toast;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-/**
- * Created by hbh on 2017/2/7.
- */
 
 public class RegisterView extends AppCompatActivity implements View.OnClickListener{
     private EditText phoneNum;

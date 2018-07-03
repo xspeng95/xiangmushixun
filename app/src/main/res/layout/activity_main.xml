@@ -28,6 +28,7 @@
         android:textColorHint="#03A9F4"
         android:text=""/>
     <Button
+        android:id="@+id/signin_btn"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:layout_width="match_parent"
