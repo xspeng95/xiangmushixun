@@ -1,17 +1,16 @@
 package com.example.legendpeng.chatdemo;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.content.Intent;
 import android.widget.EditText;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-private Button rigester_bu;
-private EditText count_text;
-private EditText mima_text;
+    private Button rigester_bu;
+    private EditText count_text;
+    private EditText mima_text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +29,7 @@ private EditText mima_text;
                 intent.setClass(MainActivity.this, RegisterView.class);
                 startActivity(intent);
             }
+
         });
         count_text.setOnClickListener(new View.OnClickListener() {
             @Override
