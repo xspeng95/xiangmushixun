@@ -43,7 +43,7 @@
             android:id="@+id/name_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="" />
+            android:hint="用户名" />
 
     </LinearLayout>
 
@@ -62,11 +62,12 @@
 
         <EditText
             android:id="@+id/phone_text"
-            android:layout_width="134dp"
+            android:layout_width="184dp"
             android:layout_height="wrap_content"
-            android:text="" />
+            android:hint="手机号"
+             />
         <Button
-            android:id="@+id/getinf_bu"
+            android:id="@+id/validate_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="获取验证码"
@@ -90,7 +91,7 @@
             android:id="@+id/mima_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="" />
+            android:hint="密码" />
 
     </LinearLayout>
 
@@ -110,7 +111,7 @@
             android:id="@+id/mimaconform_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="" />
+            android:hint="密码确认" />
 
     </LinearLayout>
 
@@ -130,12 +131,12 @@
             android:id="@+id/conform_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="" />
+            android:hint="验证码" />
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/rigister_bu"
+        android:id="@+id/rigister_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
