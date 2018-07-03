@@ -1,11 +1,11 @@
 package com.example.legendpeng.chatdemo.ui.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.support.annotation.Nullable;
 import android.widget.Button;
-import android.content.Intent;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.example.legendpeng.chatdemo.R;
@@ -33,6 +33,7 @@ private EditText mima_text;
                 intent.setClass(MainActivity.this, RegisterView.class);
                 startActivity(intent);
             }
+
         });
         signin_btn.setOnClickListener(new View.OnClickListener() {
             @Override
