@@ -5,11 +5,16 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.example.legendpeng.chatdemo.R;
+import com.example.legendpeng.chatdemo.presenter.IRegisterPresenter;
+import com.example.legendpeng.chatdemo.presenter.RegisterPresenterImpl;
+import com.example.legendpeng.chatdemo.ui.iView.IRegisterView;
+
 import android.content.Intent;
 import android.widget.Toast;
 import cn.smssdk.EventHandler;
@@ -18,13 +23,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class RegisterView extends AppCompatActivity implements View.OnClickListener{
+public class RegisterView extends AppCompatActivity implements View.OnClickListener, IRegisterView{
     private EditText phoneNum;
+    private EditText mimaText;
+    private EditText nameText;
+    private EditText mimaConfirmText;
     private EditText validateNum;
     private Button validate_btn;
     private Button register_btn;
     public EventHandler eh;
     private  TimeCount mTimeCount;
+    IRegisterPresenter iRegisterPresenter;
 
     protected void onCreate(Bundle saveInstanceState){
         super.onCreate(saveInstanceState);
@@ -32,10 +41,14 @@ public class RegisterView extends AppCompatActivity implements View.OnClickListe
         SMSSDK.initSDK(this, "269d5abf647fa", "f8cfecdcc56965d22f12c86e14b028f0");
         initEvent();
         init();
+        iRegisterPresenter = new RegisterPresenterImpl(this);
     }
 
     private void  initEvent(){
         phoneNum=(EditText)findViewById(R.id.phone_text);
+        mimaText=findViewById(R.id.mima_text);
+        nameText=findViewById(R.id.name_text);
+        mimaConfirmText=findViewById(R.id.mimaconform_text);
         validateNum=(EditText)findViewById(R.id.conform_text);
         validate_btn=(Button)findViewById(R.id.validate_btn);
         register_btn=(Button)findViewById(R.id.rigister_btn);
@@ -52,7 +65,8 @@ public class RegisterView extends AppCompatActivity implements View.OnClickListe
 
                     if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) { //提交验证码成功
 
-                        startActivity(new Intent(RegisterView.this, MainActivity.class)); //页面跳转
+                        //startActivity(new Intent(RegisterView.this, MainActivity.class)); //页面跳转
+                        iRegisterPresenter.register(phoneNum.getText().toString(), mimaText.getText().toString(), nameText.getText().toString());
 
                     }else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE){ //获取验证码成功
 
@@ -86,23 +100,35 @@ public class RegisterView extends AppCompatActivity implements View.OnClickListe
 
                 break;
             case R.id.rigister_btn:
-                if(!phoneNum.getText().toString().trim().equals("")){
-                    if(checkTel(phoneNum.getText().toString().trim())){
-                        if(!validateNum.getText().toString().trim().equals("")){
-                            SMSSDK.submitVerificationCode("+86",phoneNum.getText().toString().trim(),validateNum.getText().toString().trim());
-
-                        }else {
-                            Toast.makeText(RegisterView.this,"请输入验证码",Toast.LENGTH_SHORT).show();
-                        }
-                    }else {
-                        Toast.makeText(RegisterView.this,"请输入正确的手机号",Toast.LENGTH_SHORT).show();
-                    }
-                }else {
+                if(phoneNum.getText().toString().trim().equals("")) {
                     Toast.makeText(RegisterView.this,"请输入手机号",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(!checkTel(phoneNum.getText().toString().trim())){
+                    Toast.makeText(RegisterView.this,"请输入正确的手机号",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(validateNum.getText().toString().trim().equals("")) {
+                    Toast.makeText(RegisterView.this,"请输入验证码",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(mimaText.getText().toString().trim().equals("") || mimaConfirmText.getText().toString().trim().equals("")){
+                    Toast.makeText(RegisterView.this,"密码和确认密码不能为空",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(!mimaText.getText().toString().equals(mimaConfirmText.getText().toString())){
+                    Toast.makeText(RegisterView.this,"密码和确认密码不一致",Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
-                break;
+                // 测试阶段不做短信验证
+//                SMSSDK.submitVerificationCode("+86",phoneNum.getText().toString().trim(),validateNum.getText().toString().trim());
+
+                iRegisterPresenter.register(phoneNum.getText().toString(), mimaText.getText().toString(), nameText.getText().toString());
+
         }
+
+
     }
     /**
      * 正则匹配手机号码
@@ -143,7 +169,13 @@ public class RegisterView extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    @Override
+    public void registerSuccess() {
+        startActivity(new Intent(RegisterView.this, LoginActivity.class)); //页面跳转
+    }
 
-
-
+    @Override
+    public void showMessage(String msg) {
+        Log.d("Register", msg);
+    }
 }

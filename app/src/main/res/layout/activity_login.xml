@@ -8,7 +8,7 @@
     android:gravity="center"
     android:background="@drawable/register_view"
 
-    tools:context=".LoginActivity">
+    tools:context=".ui.activity.LoginActivity">
 
 
     <EditText
@@ -30,19 +30,19 @@
         android:textColorHint="#03A9F4"
         android:text=""/>
     <Button
+        android:id="@+id/login_btn"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-
         android:background="@drawable/shape"
         android:text="登录"/>
     <RelativeLayout
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
+
         <Button
             android:background="@android:color/transparent"
             android:layout_alignParentLeft="true"
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:text="忘记密码？"/>
         <Button
-            android:id="@+id/rigister_b"
+            android:id="@+id/reg_btn"
             android:background="@android:color/transparent"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
